@@ -374,7 +374,7 @@ func writeFileService(mystruct interface{}) (string, error) {
 		return "", err
 	}
 
-	_, err = file.WriteString("_,err=s.repository.DeleteByID" + name + "(inputID.ID)\n")
+	_, err = file.WriteString("err=s.repository.DeleteByID" + name + "(inputID.ID)\n")
 	if isError(err) {
 		return "", err
 	}

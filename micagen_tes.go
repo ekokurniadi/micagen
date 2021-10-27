@@ -1,13 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
-	"github.com/ekokurniadi/micagen/input"
-	"github.com/ekokurniadi/micagen/repository"
-	"github.com/ekokurniadi/micagen/service"
+	"github.com/ekokurniadi/micagen/entity"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -33,17 +30,7 @@ func main() {
 		return
 	}
 
-	userRepository := repository.NewUserRepository(db)
-	userService := service.NewUserService(userRepository)
-	inputID := input.InputIDUser{}
-	inputID.ID = 4
-	users, _ := userService.UserServiceDeleteByID(inputID)
-	fmt.Println(users)
-
-	// GenerateTable(db, &entity.User{}) => for migration struct to table on database
-	// CreateRepository(db, &entity.User{}) => for create repository from struct user
-	// CreateStructInput(&entity.User{}) => for create struct input from struct user
-	//CreateService(db, &entity.User{}) => for create service from struct user
+	GenerateAll(db, &entity.User{})
 
 	// After file is generated please delete or comment function above if you don't won't to generate file using mica generator
 

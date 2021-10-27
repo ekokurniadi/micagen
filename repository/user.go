@@ -10,7 +10,7 @@ type UserRepository interface {
 	UpdateUser(user entity.User) (entity.User, error)
 	FindByIDUser(ID int) (entity.User, error)
 	FindAllUser() ([]entity.User, error)
-	DeleteByIDUser(ID int) (entity.User, error)
+	DeleteByIDUser(ID int) (string error)
 }
 
 type userRepository struct {
@@ -35,7 +35,6 @@ func (r *userRepository) FindByIDUser(ID int) (entity.User, error) {
 	if err != nil {
 		return user, err
 	}
-
 	return user, nil
 
 }
@@ -56,7 +55,6 @@ func (r *userRepository) FindAllUser() ([]entity.User, error) {
 	return users, nil
 
 }
-
 func (r *userRepository) DeleteByIDUser(ID int) (entity.User, error) {
 	var user entity.User
 	err := r.db.Where("id = ? ", ID).Delete(&user).Error

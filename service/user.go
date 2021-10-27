@@ -64,7 +64,7 @@ func (s *userService) UserServiceDeleteByID(inputID input.InputIDUser) (bool, er
 	if err != nil {
 		return false, err
 	}
-	_, err = s.repository.DeleteByIDUser(inputID.ID)
+	err = s.repository.DeleteByIDUser(inputID.ID)
 	if err != nil {
 		return false, err
 	}
