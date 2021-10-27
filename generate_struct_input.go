@@ -94,7 +94,8 @@ func writeFile(mystruct interface{}) (string, error) {
 
 	val = reflect.ValueOf(mystruct).Elem()
 	for i := 0; i < val.NumField(); i++ {
-		if val.Type().Field(i).Name == "ID" {
+
+		if val.Type().Field(i).Name == "ID" || val.Type().Field(i).Type.String() == "time.Time" || val.Type().Field(i).Type.String() == "time.Time" {
 			_, err = file.WriteString("")
 			if isError(err) {
 				return "", err

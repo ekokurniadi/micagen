@@ -105,6 +105,14 @@ func writeFileService(mystruct interface{}) (string, error) {
 		return "", err
 	}
 
+	_, err = file.WriteString(fmt.Sprintf("%sServiceGetAll() (%s %s)%s", name, "[]entity."+name, ",error", "\n"))
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString(fmt.Sprintf("%sServiceGetByID(%s %s) (%s %s)%s", name, "inputID", "input.InputID"+name, "entity."+name, ",error", "\n"))
+	if isError(err) {
+		return "", err
+	}
 	_, err = file.WriteString(fmt.Sprintf("%sServiceCreate(%s %s) (%s %s)%s", name, "input", "input."+name+"Input", "entity."+name, ",error", "\n"))
 	if isError(err) {
 		return "", err
@@ -163,7 +171,7 @@ func writeFileService(mystruct interface{}) (string, error) {
 	}
 	val := reflect.ValueOf(mystruct).Elem()
 	for i := 0; i < val.NumField(); i++ {
-		if val.Type().Field(i).Name == "ID" {
+		if val.Type().Field(i).Name == "ID" || val.Type().Field(i).Type.String() == "time.Time" || val.Type().Field(i).Type.String() == "time.Time" {
 			_, err = file.WriteString("")
 			if isError(err) {
 				return "", err
@@ -196,6 +204,195 @@ func writeFileService(mystruct interface{}) (string, error) {
 		return "", err
 	}
 	_, err = file.WriteString("return " + "new" + name + ",nil" + "\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString(fmt.Sprintf("func (s *"+strings.ToLower(name)+"Service"+") %sServiceUpdate(%s %s,%s %s) (%s %s)%s", name, "inputID", "input.InputID"+name, "inputData", "input."+name+"Input", "entity."+name, ",error", "{\n"))
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("" + strings.ToLower(name) + ",err:=s.repository.FindByID" + name + "(inputID.ID)\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("if err != nil {\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("return " + strings.ToLower(name) + ",err" + "\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+
+	val = reflect.ValueOf(mystruct).Elem()
+	for i := 0; i < val.NumField(); i++ {
+		if val.Type().Field(i).Name == "ID" || val.Type().Field(i).Type.String() == "time.Time" || val.Type().Field(i).Type.String() == "time.Time" {
+			_, err = file.WriteString("")
+			if isError(err) {
+				return "", err
+			}
+		} else {
+			fmt.Print("Writting ... ")
+			fmt.Printf("%s%s%s%s%s", strings.ToLower(name), ".", val.Type().Field(i).Name, "=inputData."+val.Type().Field(i).Name, "\n")
+			_, err = file.WriteString(fmt.Sprintf("%s%s%s%s%s", strings.ToLower(name), ".", val.Type().Field(i).Name, "=inputData."+val.Type().Field(i).Name, "\n"))
+			if isError(err) {
+				return "", err
+			}
+		}
+	}
+	_, err = file.WriteString("\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("updated" + name + ",err:=s.repository.Update" + name + "(" + strings.ToLower(name) + ")\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("if err != nil {\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("return " + "updated" + name + ",err" + "\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("return " + "updated" + name + ",nil" + "\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString(fmt.Sprintf("func (s *"+strings.ToLower(name)+"Service"+")%sServiceGetByID(%s %s) (%s %s)%s", name, "inputID", "input.InputID"+name, "entity."+name, ",error", "{\n"))
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("" + strings.ToLower(name) + ",err:=s.repository.FindByID" + name + "(inputID.ID)\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("if err != nil {\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("return " + strings.ToLower(name) + ",err" + "\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("return " + strings.ToLower(name) + ",nil" + "\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString(fmt.Sprintf("func (s *"+strings.ToLower(name)+"Service"+") %sServiceGetAll() (%s %s)%s", name, "[]entity."+name, ",error", "{\n"))
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("" + strings.ToLower(name) + "s, err:=s.repository.FindAll" + name + "()\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("if err != nil {\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("return " + strings.ToLower(name) + "s, err" + "\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("return " + strings.ToLower(name) + "s, nil" + "\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString(fmt.Sprintf("func (s *"+strings.ToLower(name)+"Service"+") %sServiceDeleteByID(%s %s) (%s %s)%s", name, "inputID", "input.InputID"+name, "bool", ",error", "{\n"))
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("_,err:=s.repository.FindByID" + name + "(inputID.ID)\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("if err != nil {\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("return false,err" + "\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("_,err=s.repository.DeleteByID" + name + "(inputID.ID)\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("if err != nil {\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("return false,err" + "\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("return true,nil" + "\n")
 	if isError(err) {
 		return "", err
 	}
