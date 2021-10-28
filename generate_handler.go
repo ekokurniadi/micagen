@@ -194,7 +194,7 @@ func writeFileHandler(mystruct interface{}) (string, error) {
 		return "", err
 	}
 
-	_, err = file.WriteString("response :=helper.ApiResponse(\"Detail " + name + "\",http.StatusOK,\"success\",formatter.Format" + name + "s(" + strings.ToLower(name) + "Detail))\n")
+	_, err = file.WriteString("response :=helper.ApiResponse(\"Detail " + name + "\",http.StatusOK,\"success\",formatter.Format" + name + "(" + strings.ToLower(name) + "Detail))\n")
 	if isError(err) {
 		return "", err
 	}

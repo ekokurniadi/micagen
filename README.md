@@ -13,3 +13,6 @@ go get -u github.com/ekokurniadi/micagen
 ```go
 import "github.com/ekokurniadi/micagen"
 ```
+
+### example project using micagen
+https://github.com/ekokurniadi/micagen-example.git
