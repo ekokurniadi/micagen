@@ -1,11 +1,10 @@
-package main
+package micagen
 
-import "gorm.io/gorm"
+import (
+	"github.com/ekokurniadi/micagen/core"
+	"gorm.io/gorm"
+)
 
-func GenerateAll(db *gorm.DB, model interface{}) {
-	GenerateTable(db, model)
-	CreateStructInput(model)
-	CreateRepository(db, model)
-	CreateService(db, model)
-	CreateFormatter(db, model)
+func Generate(db *gorm.DB, model interface{}) {
+	core.GenerateAll(db, model)
 }
