@@ -164,6 +164,46 @@ func writeFileHandler(mystruct interface{}) (string, error) {
 		return "", err
 	}
 
+	_, err = file.WriteString("" + strings.ToLower(name) + "Detail,err:= h.service." + name + "ServiceGetByID(input)\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("if err != nil {\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("response :=helper.ApiResponse(\"Failed to get " + name + "\",http.StatusBadRequest,\"error\",nil)\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("c.JSON(http.StatusBadRequest,response)\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("return\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("response :=helper.ApiResponse(\"Detail " + name + "\",http.StatusOK,\"success\",formatter.Format" + name + "s(" + strings.ToLower(name) + "Detail))\n")
+	if isError(err) {
+		return "", err
+	}
+
+	_, err = file.WriteString("c.JSON(http.StatusOK,response)\n")
+	if isError(err) {
+		return "", err
+	}
+
 	_, err = file.WriteString("}\n")
 	if isError(err) {
 		return "", err
