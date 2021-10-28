@@ -1,4 +1,4 @@
-package core
+package micagen
 
 import (
 	"fmt"
@@ -133,7 +133,7 @@ func writeFile(mystruct interface{}) (string, error) {
 	}
 
 	fmt.Printf("Rewrite file is successfully \n")
-	return filepath, nil
+	return filepath + "Input", nil
 }
 
 func isError(err error) bool {

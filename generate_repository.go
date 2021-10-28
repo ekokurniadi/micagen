@@ -1,4 +1,4 @@
-package core
+package micagen
 
 import (
 	"fmt"
@@ -339,7 +339,7 @@ func createFileRepository(mystruct interface{}) (string, error) {
 	}
 
 	fmt.Printf("Create %s is successfully \n", filename.Name())
-	return filepath, nil
+	return filepath + "Repository", nil
 }
 
 func createFolderRepository() error {

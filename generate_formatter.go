@@ -227,5 +227,5 @@ func createFileFormatter(mystruct interface{}) (string, error) {
 	}
 
 	fmt.Printf("Create %s is successfully \n", filename.Name())
-	return filepath, nil
+	return filepath + "Formatter", nil
 }

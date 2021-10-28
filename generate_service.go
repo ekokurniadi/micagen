@@ -414,6 +414,6 @@ func writeFileService(mystruct interface{}) (string, error) {
 	}
 
 	fmt.Printf("Rewrite file is successfully \n")
-	return filepath, nil
+	return filepath + "Service", nil
 
 }

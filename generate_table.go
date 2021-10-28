@@ -11,7 +11,7 @@ func GenerateTable(db *gorm.DB, model interface{}) (string, error) {
 	if err != nil {
 		log.Fatal("Create Table is not complete")
 	}
-	message := "Successfully"
+	message := "Successfully migrate to database"
 	return message, err
 
 }
