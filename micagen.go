@@ -5,6 +5,9 @@ import (
 	"gorm.io/gorm"
 )
 
-func Generate(db *gorm.DB, model interface{}) {
+type Micagen struct {
+}
+
+func (micagen *Micagen) Generate(db *gorm.DB, model interface{}) {
 	core.GenerateAll(db, model)
 }
