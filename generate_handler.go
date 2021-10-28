@@ -164,6 +164,11 @@ func writeFileHandler(mystruct interface{}) (string, error) {
 		return "", err
 	}
 
+	_, err = file.WriteString("}\n")
+	if isError(err) {
+		return "", err
+	}
+
 	// Save file changes.
 	err = file.Sync()
 	if isError(err) {

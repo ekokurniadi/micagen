@@ -102,7 +102,7 @@ func writeFileHelper(mystruct interface{}) (string, error) {
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("Data interface{} `json:\"data\"`\n")
+	_, err = file.WriteString("Data interface{} `json:\"data\"`\n}\n")
 	if isError(err) {
 		return "", err
 	}
@@ -132,11 +132,11 @@ func writeFileHelper(mystruct interface{}) (string, error) {
 		return "", err
 	}
 
-	_, err = file.WriteString("meta :=Meta{\nMessage:message,\nCode:code,\nStatus:status,\n}")
+	_, err = file.WriteString("meta :=Meta{\nMessage:message,\nCode:code,\nStatus:status,\n}\n")
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("jsonResponse :=Response{\nMeta:meta,\nData:data,\n}")
+	_, err = file.WriteString("jsonResponse :=Response{\nMeta:meta,\nData:data,\n}\n")
 	if isError(err) {
 		return "", err
 	}
@@ -163,6 +163,10 @@ func writeFileHelper(mystruct interface{}) (string, error) {
 		return "", err
 	}
 	_, err = file.WriteString("return errors\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("}\n")
 	if isError(err) {
 		return "", err
 	}
