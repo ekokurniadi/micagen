@@ -2,7 +2,10 @@ package micagen
 
 import "gorm.io/gorm"
 
-func GenerateAll(db *gorm.DB, model interface{}) {
+type Micagen struct {
+}
+
+func (micagen *Micagen) GenerateAll(db *gorm.DB, model interface{}) {
 	GenerateTable(db, model)
 	CreateStructInput(model)
 	CreateRepository(db, model)
