@@ -55,6 +55,13 @@ func createFileHelper(mystruct interface{}) (string, error) {
 		return filepath, err
 	}
 
+	_, err = os.Stat(filepath)
+
+	if os.IsExist(err) {
+		fmt.Println("file is exist")
+		return filepath, err
+	}
+
 	filename, err := os.Create(filepath)
 
 	if err != nil {
@@ -154,7 +161,7 @@ func writeFileHelper(mystruct interface{}) (string, error) {
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("for _,e := range err.(validator.ValidationErrors) {\n")
+	_, err = file.WriteString("for _,e := range err.(validator.Validation.Errors) {\n")
 	if isError(err) {
 		return "", err
 	}
