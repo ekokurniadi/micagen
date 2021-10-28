@@ -162,11 +162,13 @@ func writeFileHelper(mystruct interface{}) (string, error) {
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("return errors\n")
+
+	_, err = file.WriteString("}\n")
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("}\n")
+
+	_, err = file.WriteString("return errors\n")
 	if isError(err) {
 		return "", err
 	}
