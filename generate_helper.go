@@ -15,7 +15,7 @@ func CreateHelper(db *gorm.DB, mystruct interface{}) string {
 	createFileHelper(mystruct)
 	writeFileHelper(mystruct)
 	if nameOfStruct := reflect.TypeOf(mystruct); nameOfStruct.Kind() == reflect.Ptr {
-		return "*" + nameOfStruct.Elem().Name()
+		return nameOfStruct.Elem().Name()
 	} else {
 		return nameOfStruct.Name()
 	}
