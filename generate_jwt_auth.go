@@ -118,11 +118,8 @@ func writeFileAuth(mystruct interface{}) (string, error) {
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("s := godotenv.Load()\nif s != nil { \nfmt.Println(s)\n}\n")
-	if isError(err) {
-		return "", err
-	}
-	_, err = file.WriteString("secret := os.Getenv(\"SECRET_KEY\")\n")
+
+	_, err = file.WriteString("var secret = os.Getenv(\"SECRET_KEY\")\n")
 	if isError(err) {
 		return "", err
 	}
@@ -148,7 +145,7 @@ func writeFileAuth(mystruct interface{}) (string, error) {
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("token := jwt.NewWithClaims(jwt.SigninMethodHS256,claim)\n")
+	_, err = file.WriteString("token := jwt.NewWithClaims(jwt.SigningMethodHS256,claim)\n")
 	if isError(err) {
 		return "", err
 	}
