@@ -109,14 +109,7 @@ func writeFileFormatter(mystruct interface{}) (string, error) {
 			}
 		} else {
 			fmt.Print("Writting ... ")
-			var camelCase_formatter []string
-
-			splitted := camelcase.Split(val.Type().Field(i).Name)
-			for a := 0; a < len(splitted); a++ {
-				camelCase_formatter = append(camelCase_formatter, splitted[a])
-			}
-			replaceCamelCase := strings.Join(camelCase_formatter, "_")
-			_, err = file.WriteString("" + strings.ToLower(name) + "Formatter." + replaceCamelCase + "=" + strings.ToLower(name) + "." + replaceCamelCase + "\n")
+			_, err = file.WriteString("" + strings.ToLower(name) + "Formatter." + val.Type().Field(i).Name + "=" + strings.ToLower(name) + "." + val.Type().Field(i).Name + "\n")
 			if isError(err) {
 				return "", err
 			}
