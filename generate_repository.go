@@ -79,7 +79,7 @@ func writeFileRepository(mystruct interface{}) (string, error) {
 		return "", err
 	}
 
-	_, err = file.WriteString(fmt.Sprintf("DeleteByID%s(%s %s) (%s %s)", name, "ID", "int", "entity."+name, "error"))
+	_, err = file.WriteString(fmt.Sprintf("DeleteByID%s(%s %s) (%s %s)", name, "ID", "int", "entity."+name, ",error"))
 	if isError(err) {
 		return "", err
 	}
