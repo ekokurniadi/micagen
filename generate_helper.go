@@ -161,7 +161,7 @@ func writeFileHelper(mystruct interface{}) (string, error) {
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("for _,e := range err.(validator.Validation.Errors) {\n")
+	_, err = file.WriteString("for _,e := range err.(validator.ValidationErrors) {\n")
 	if isError(err) {
 		return "", err
 	}

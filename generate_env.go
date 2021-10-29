@@ -44,7 +44,7 @@ func createFileEnv(mystruct interface{}) (string, error) {
 	filename, err := os.Create(filepath)
 
 	if err != nil {
-		log.Fatal("Cannot create a file please check your directory again")
+		log.Fatal("Can't create a file please check your directory again")
 		return filename.Name(), err
 	}
 

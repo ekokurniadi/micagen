@@ -16,5 +16,5 @@ func (micagen *Micagen) GenerateAll(db *gorm.DB, model interface{}) {
 	CreateHandler(db, model)
 	CreateHelper(db, model)
 	CreateAuth(db, model)
-	createFileEnv(model)
+	CreateEnv(db, model)
 }
