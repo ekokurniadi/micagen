@@ -247,7 +247,7 @@ func writeFileHandler(mystruct interface{}) (string, error) {
 		return "", err
 	}
 
-	_, err = file.WriteString("response :=helper.ApiResponse(\"Detail " + name + "s\",http.StatusOK,\"success\",formatter.Format" + name + "s(" + strings.ToLower(name) + "s" + "))\n")
+	_, err = file.WriteString("response :=helper.ApiResponse(\"List of " + name + "s\",http.StatusOK,\"success\",formatter.Format" + name + "s(" + strings.ToLower(name) + "s" + "))\n")
 	if isError(err) {
 		return "", err
 	}
@@ -292,7 +292,7 @@ func writeFileHandler(mystruct interface{}) (string, error) {
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("response :=helper.ApiResponse(\"Create " + name + "failed\",http.StatusBadRequest,\"error\",errorMessage)\n")
+	_, err = file.WriteString("response :=helper.ApiResponse(\"Create " + name + " failed\",http.StatusBadRequest,\"error\",errorMessage)\n")
 	if isError(err) {
 		return "", err
 	}
@@ -321,7 +321,7 @@ func writeFileHandler(mystruct interface{}) (string, error) {
 		return "", err
 	}
 
-	_, err = file.WriteString("response :=helper.ApiResponse(\"Create " + name + "failed\",http.StatusBadRequest,\"error\",nil)\n")
+	_, err = file.WriteString("response :=helper.ApiResponse(\"Create " + name + " failed\",http.StatusBadRequest,\"error\",nil)\n")
 	if isError(err) {
 		return "", err
 	}
@@ -340,7 +340,7 @@ func writeFileHandler(mystruct interface{}) (string, error) {
 		return "", err
 	}
 
-	_, err = file.WriteString("response :=helper.ApiResponse(\"Create " + name + "\",http.StatusOK,\"success\",formatter.Format" + name + "(new" + name + "))\n")
+	_, err = file.WriteString("response :=helper.ApiResponse(\"Successfully Create " + name + "\",http.StatusOK,\"success\",formatter.Format" + name + "(new" + name + "))\n")
 	if isError(err) {
 		return "", err
 	}
@@ -414,7 +414,7 @@ func writeFileHandler(mystruct interface{}) (string, error) {
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("response :=helper.ApiResponse(\"Update " + name + "failed\",http.StatusBadRequest,\"error\",errorMessage)\n")
+	_, err = file.WriteString("response :=helper.ApiResponse(\"Update " + name + " failed\",http.StatusBadRequest,\"error\",errorMessage)\n")
 	if isError(err) {
 		return "", err
 	}
@@ -462,7 +462,7 @@ func writeFileHandler(mystruct interface{}) (string, error) {
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("response :=helper.ApiResponse(\"Update " + name + "\",http.StatusOK,\"success\",formatter.Format" + name + "(updated" + name + "))\n")
+	_, err = file.WriteString("response :=helper.ApiResponse(\"Successfully Update " + name + "\",http.StatusOK,\"success\",formatter.Format" + name + "(updated" + name + "))\n")
 	if isError(err) {
 		return "", err
 	}
@@ -489,6 +489,15 @@ func writeFileHandler(mystruct interface{}) (string, error) {
 	if isError(err) {
 		return "", err
 	}
+	_, err = file.WriteString("var inputID input.InputID" + name + "\n")
+	if isError(err) {
+		return "", err
+	}
+	_, err = file.WriteString("inputID.ID = id\n")
+	if isError(err) {
+		return "", err
+	}
+
 	_, err = file.WriteString("_,err := h.service." + name + "ServiceGetByID(id)\n")
 	if isError(err) {
 		return "", err
@@ -548,7 +557,7 @@ func writeFileHandler(mystruct interface{}) (string, error) {
 	if isError(err) {
 		return "", err
 	}
-	_, err = file.WriteString("response :=helper.ApiResponse(\"Delete " + name + "\",http.StatusOK,\"success\",nil)\n")
+	_, err = file.WriteString("response :=helper.ApiResponse(\"Successfully Delete " + name + "\",http.StatusOK,\"success\",nil)\n")
 	if isError(err) {
 		return "", err
 	}
