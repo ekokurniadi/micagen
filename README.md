@@ -3,7 +3,7 @@ Rest Api Generator for Golang Programming Language
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/ekokurniadi/micagen.svg)](https://pkg.go.dev/github.com/ekokurniadi/micagen)
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=ekokurniadi&repo=micagen&theme=radical&show_icons=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=ekokurniadi&repo=micagen&theme=radical&show_icons=true)](https://github.com/ekokurniadi/micagen)
 
 
 ### How to install
@@ -104,7 +104,7 @@ func main(){
 	databaseName := os.Getenv("DB_DATABASE")
 	databasePort := os.Getenv("DB_PORT")
 
-	dsn := "host=" + host + " user=" + userHost + " password=" + userPass + " dbname=" + databaseName + " port=" + databasePort + " sslmode=require TimeZone=Asia/Jakarta"
+	dsn := "host=" + host + " user=" + userHost + " password=" + userPass + " dbname=" + databaseName + " port=" + databasePort + " sslmode=disable TimeZone=Asia/Jakarta"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err)
