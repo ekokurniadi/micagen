@@ -74,7 +74,7 @@ import (
 	"tesss/entity"
 
 	"github.com/ekokurniadi/micagen"
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
