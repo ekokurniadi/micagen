@@ -37,7 +37,7 @@ type Customer struct {
 ### This case i want to migrate struct customer to my database and generate crud rest api using micagen
 
 
-### Example project using micagen
+### Example project using micagen and mysql db
 ```go
 package main
 
@@ -58,6 +58,48 @@ func main() {
 		log.Fatal(err.Error())
 	}
        
+        //call micagen package
+	gen := micagen.Micagen{}
+        //automigrate struct of customer and generate crud rest api for customer
+	gen.GenerateAll(db, &entity.Customer{})
+
+}
+```
+### Example project using micagen and postgresql
+```go
+package main
+
+import (
+	"log"
+	"tesss/entity"
+
+	"github.com/ekokurniadi/micagen"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+)
+
+func main(){
+
+        env := godotenv.Load()
+	if env != nil {
+	   log.Fatal("Error loading .env file")
+	 }
+
+	host := os.Getenv("DB_HOST")
+	userHost := os.Getenv("DB_USER")
+	userPass := os.Getenv("DB_PASSWORD")
+	databaseName := os.Getenv("DB_DATABASE")
+	databasePort := os.Getenv("DB_PORT")
+
+	dsn := "host=" + host + " user=" + userHost + " password=" + userPass + " dbname=" + databaseName + " port=" + databasePort + " sslmode=require TimeZone=Asia/Jakarta"
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	fmt.Println("Database Connected")
+
         //call micagen package
 	gen := micagen.Micagen{}
         //automigrate struct of customer and generate crud rest api for customer
