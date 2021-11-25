@@ -11,6 +11,19 @@ Rest Api Generator for Golang Programming Language
 go get -u github.com/ekokurniadi/micagen
 ```
 
+### If you are using MySql DB
+
+ - Please run this command on your project terminal
+```sh
+go get -u gorm.io/driver/mysql
+```
+
+### If you are using PostgreSql DB
+ - Please run this command on your project terminal
+```sh
+go get -u gorm.io/driver/postgres
+```
+
 ### Then import the package
 
 ```go
@@ -37,7 +50,7 @@ type Customer struct {
 ### This case i want to migrate struct customer to my database and generate crud rest api using micagen
 
 
-### Example project using micagen and mysql db
+### Example project using micagen and MySql db
 ```go
 package main
 
@@ -65,7 +78,7 @@ func main() {
 
 }
 ```
-### Example project using micagen and postgresql
+### Example project using micagen and PostgreSql
 ```go
 package main
 
